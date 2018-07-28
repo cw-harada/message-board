@@ -6,10 +6,10 @@ import javax.inject.{ Inject, Singleton }
 import models.Message
 import play.api.i18n.{ I18nSupport, Messages, MessagesApi }
 import play.api.mvc.{ Action, AnyContent, Controller }
-import scalikejdbc.AutoSession
+import services.MessageService
 
 @Singleton
-class CreateMessageController @Inject()(val messagesApi: MessagesApi)
+class CreateMessageController @Inject()(val messagesApi: MessagesApi, messageService: MessageService)
     extends Controller
     with I18nSupport
     with MessageControllerSupport {
@@ -23,10 +23,9 @@ class CreateMessageController @Inject()(val messagesApi: MessagesApi)
       .bindFromRequest()
       .fold(
         formWithErrors => BadRequest(views.html.create(formWithErrors)), { model =>
-          implicit val session = AutoSession
-          val now              = ZonedDateTime.now()
-          val message          = Message(None, model.body, now, now)
-          val result           = Message.create(message)
+          val now     = ZonedDateTime.now()
+          val message = Message(None, Some(model.title), model.body, now, now)
+          val result  = messageService.create(message)
           if (result > 0) {
             Redirect(routes.GetMessagesController.index())
           } else {

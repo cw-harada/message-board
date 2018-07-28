@@ -9,8 +9,9 @@ trait MessageControllerSupport { this: Controller =>
 
   protected val form = Form(
     mapping(
-      "id"   -> optional(longNumber),
-      "body" -> nonEmptyText
+      "id"    -> optional(longNumber),
+      "title" -> nonEmptyText,
+      "body"  -> nonEmptyText
     )(MessageForm.apply)(MessageForm.unapply)
   )
 

@@ -13,11 +13,12 @@ import play.filters.csrf.CSRF._
 import play.filters.csrf._
 import scalikejdbc.PlayModule
 import play.api.inject.bind
+import services.{ MessageService, MockMessageService }
 
 import scala.reflect.ClassTag
 
 abstract class PlayFunSpec
-  extends FunSpec
+    extends FunSpec
     with MustMatchers
     with OptionValues
     with WsScalaTestClient
@@ -28,6 +29,7 @@ abstract class PlayFunSpec
     new GuiceApplicationBuilder()
       .disable[DBModule]
       .disable[PlayModule]
+      .overrides(bind[MessageService].to[MockMessageService])
       .build()
 
   lazy val injector = fakeApplication.injector

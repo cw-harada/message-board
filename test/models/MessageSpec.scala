@@ -1,5 +1,3 @@
 package models
 
-class MessageSpec extends ModelSpec {
-
-}
+class MessageSpec extends ModelSpec {}

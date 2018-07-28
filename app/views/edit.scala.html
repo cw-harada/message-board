@@ -10,6 +10,7 @@
         <div class="col-xs-6">
             @b3.formCSRF(routes.UpdateMessageController.update) {
             @b3.hidden(messageForm("id").name, messageForm("id").value.get)
+            @b3.text(messageForm("title"), '_label -> "Title")
             @b3.text(messageForm("body"), '_label -> "Message")
             @b3.submit('class -> "btn btn-default") {
             @Messages("UpdateMessage")
