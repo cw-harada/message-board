@@ -1,0 +1,12 @@
+Id=Id
+Title=タイトル
+Message=メッセージ
+CreateMessage=メッセージ新規作成
+UpdateMessage=メッセージ編集
+DeleteMessage=メッセージ削除
+GetMessages=メッセージ一覧
+GetMessage=メッセージ詳細
+
+CreateMessageError=メッセージ作成エラーが発生しました。
+UpdateMessageError=メッセージ更新エラーが発生しました。
+DeleteMessageError=メッセージ作成エラーが発生しました。

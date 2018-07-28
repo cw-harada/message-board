@@ -1,5 +1,26 @@
-@()
+@(messageSeq: Seq[Message])(implicit messages: Messages, request: RequestHeader)
 
-@main("Welcome to Play") {
-  <h1>Welcome to Play!</h1>
+@main(Messages("GetMessages")) {
+
+<div class="container">
+    <h1>@Messages("GetMessages")</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>@Messages("Message")</th>
+        </tr>
+        </thead>
+        <tbody>
+        @for(message <- messageSeq) {
+        <tr>
+            <td><a href="@routes.GetMessageController.index(message.id.get)">@message.id.get</a></td>
+            <td>@message.body</td>
+        </tr>
+        }
+        </tbody>
+    </table>
+    <a href="@routes.CreateMessageController.index()" class="btn btn-primary">@Messages("CreateMessage")</a>
+</div>
+
 }

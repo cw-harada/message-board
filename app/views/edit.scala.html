@@ -1,0 +1,22 @@
+@import b3.vertical.fieldConstructor
+
+@(messageForm: Form[MessageForm])(implicit messages: Messages, request: RequestHeader)
+
+@main(Messages("UpdateMessage")) {
+
+<div class="container">
+    <h1>id = @messageForm.get.id のメッセージ編集ページ</h1>
+    <div class="row">
+        <div class="col-xs-6">
+            @b3.formCSRF(routes.UpdateMessageController.update) {
+            @b3.hidden(messageForm("id").name, messageForm("id").value.get)
+            @b3.text(messageForm("body"), '_label -> "Message")
+            @b3.submit('class -> "btn btn-default") {
+            @Messages("UpdateMessage")
+            }
+            }
+        </div>
+    </div>
+</div>
+
+}

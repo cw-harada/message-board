@@ -1,0 +1,26 @@
+@import b3.vertical.fieldConstructor
+
+@(message: Message)(implicit messages: Messages, request: RequestHeader)
+
+@main(Messages("GetMessage")) {
+<div class="container">
+    <h1>@Messages("GetMessage")</h1>
+    <table class="table table-bordered">
+        <tr>
+            <th>@Messages("Id")</th>
+            <td>@message.id.get</td>
+        </tr>
+        <tr>
+            <th>@Messages("Message")</th>
+            <td>@message.body</td>
+        </tr>
+    </table>
+    <a href="@routes.UpdateMessageController.index(message.id.get)" class="btn btn-default">@Messages("UpdateMessage")</a>
+    @b3.formCSRF(routes.DeleteMessageController.delete(message.id.get)) {
+    @b3.submit('class -> "btn btn-default") {
+    @Messages("DeleteMessage")
+    }
+    }
+</div>
+
+}

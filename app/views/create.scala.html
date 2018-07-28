@@ -1,0 +1,20 @@
+@import b3.vertical.fieldConstructor
+
+@(messageForm: Form[MessageForm])(implicit messages: Messages, request: RequestHeader)
+
+@main(Messages("CreateMessage")) {
+<div class="container">
+    <h1>@Messages("CreateMessage")</h1>
+    <div class="row">
+        <div class="col-xs-6">
+            @b3.formCSRF(routes.CreateMessageController.create) {
+            @b3.text(messageForm("body"), '_label -> "Message")
+            @b3.submit('class -> "btn btn-default") {
+            @Messages("CreateMessage")
+            }
+            }
+        </div>
+    </div>
+</div>
+
+}

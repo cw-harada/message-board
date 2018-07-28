@@ -1,10 +1,25 @@
 # Routes
 # This file defines all application routes (Higher priority routes first)
-# https://www.playframework.com/documentation/latest/ScalaRouting
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           controllers.HomeController.index
+GET         /                           controllers.Default.redirect(to = "/messages")
+
+# メッセージ一覧画面の表示
+GET         /messages                   controllers.GetMessagesController.index
+# メッセージ詳細画面の表示
+GET         /messages/:id/get           controllers.GetMessageController.index(id: Long)
+# メッセージ作成画面の表示
+GET         /messages/create            controllers.CreateMessageController.index
+# メッセージ編集画面の表示
+GET         /messages/:id/update        controllers.UpdateMessageController.index(id: Long)
+
+# メッセージの作成
+POST        /messages/create            controllers.CreateMessageController.create
+# メッセージの更新
+POST        /messages/update            controllers.UpdateMessageController.update
+# メッセージの削除
+POST        /messages/:id/delete        controllers.DeleteMessageController.delete(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET         /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

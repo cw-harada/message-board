@@ -1,0 +1,12 @@
+Id=Id
+Title=Title
+Message=Message
+CreateMessage=Create Message
+UpdateMessage=Edit Message
+DeleteMessage=Delete Message
+GetMessages=Messages
+GetMessage=Message Detail
+
+CreateMessageError=Message creation error
+UpdateMessageError=Message update error
+DeleteMessageError=Message deletion error
